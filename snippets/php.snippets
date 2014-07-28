@@ -1,0 +1,194 @@
+snippet puf
+	/**
+	 * @param ${3}
+	 *
+	 * @return ${4}
+	 */
+	public function ${1}(${2})
+	{
+		${5}
+	}
+snippet prof
+	/**
+	 * @param ${3}
+	 *
+	 * @return ${4}
+	 */
+	protected function ${1}(${2})
+	{
+		${5}
+	}
+snippet prif
+	/**
+	 * @param ${3}
+	 *
+	 * @return ${4}
+	 */
+	private function ${1}(${2})
+	{
+		${5}
+	}
+snippet getset
+	/**
+	 * @param ${4:} $$2
+	 *
+	 * @return self
+	 */
+	public function set${1:}(${5:$4 }$${2:})
+	{
+		$this->${3:$2} = $$2;
+
+		return $this;
+	}
+	
+	/**
+	 * @return ${6:$4}
+	 */
+	public function get$1()
+	{
+		return $this->$3;
+	}
+snippet igetset
+	/**
+	 * @param ${3:} $2
+	 *
+	 * @return self
+	 */
+	public function set${1:}(${4:$3 }${2:});
+	
+	/**
+	 * @return ${5:$3}
+	 */
+	public function get$1();
+snippet inj
+	/**
+	 * ${4}
+	 */
+	public function inject${1:}($1 $${2:})
+	{
+		$this->${3:$2} = $$2;
+
+		return $this;
+	}
+snippet test
+	/**
+	 * ${2}
+	 */
+	public function test${1:}()
+	{
+		${3}
+	}
+snippet fun
+	/**
+	 * @param ${4}
+	 *
+	 * @return ${5}
+	 */
+	${1:public }function ${2:FunctionName}(${3})
+	{
+		${6}
+	}
+snippet #
+	//####################################################################
+snippet .#
+	//################################################################
+snippet ..#
+	//############################################################
+snippet ...#
+	//###########################################
+snippet ....#
+	//#######################################
+snippet $q
+	$query = "${1:}";
+snippet .q
+	$query.= "${1:}";
+snippet cls
+	class ${1:`vim_snippets#Filename()`}${2}
+	{
+		${3:public} function ${4:__construct}(${5:argument})
+		{
+			${6}
+		}
+	}
+snippet control
+	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+	class ${1:`vim_snippets#Filename()`} extends Controller
+	{
+		${2:public} function ${3:}Action(${4:argument})
+		{
+			${5}
+		}
+	}
+snippet act
+	public function ${1:some}Action(${2})
+	{
+		return $this->render(
+			'${3}:${4:$1}.html.twig',
+			[
+				${5}
+			]
+		);
+	}
+snippet render
+	return $this->render(
+		'${1}.html.twig',
+		[
+			${2}
+		]
+	);
+snippet crform
+	$form${1} = $this->createForm(new ${2:$1}Type(), ${3:entity});
+snippet @var
+	/** @var ${1} */
+snippet @auth
+	@author Milan Herda <herda@profesia.sk>
+snippet usea
+	use Symfony\Component\Validator\Constraints as Assert;
+snippet @as
+	* @Assert${1}
+snippet @asnb
+	* @Assert\NotBlank()
+snippet @aslen
+	* @Assert\Length(
+	*   min = "${1:3}",
+	*   max = "${2:255}",
+	*   minMessage = "${3:validation.string.too-short}",
+	*   maxMessage = "${4:validation.string.too-long}"
+	* )
+snippet @asgrp
+	groups = {"${1}"}
+snippet @rt
+	@Route("/${1}",
+	*     name="${2}",
+	*     requirements={
+	*         "${3}"="${4}"
+	*     }
+	* )
+snippet asm
+	$this->assertSame(${1:expected}, ${2:actual});
+snippet exp
+	$${1:mock}->expects($this->${2:any}())
+		->method('${3:methodName}')
+		->will($this->returnValue(${4:value}));
+snippet mock
+	$this->getMock('${1:className}');
+snippet mockb
+	$this->getMockBuilder('${1:className}')
+		->disableOriginalConstructor()
+		->getMock();
+snippet debug
+	\Tracy\Debugger::fireLog(${1});
+snippet log
+	\Tracy\Debugger::fireLog(${1});
+snippet dump
+	\Tracy\Debugger::barDump(${1});
+snippet trans
+	$this->container->get('translator')->trans('${1}');
+snippet flash
+	$this->get('session')->getFlashBag()->add(
+		'${1:info}',
+		$this->container->get('translator')->trans('${2}')
+	);
+snippet sess
+	$session = $this->get('session');

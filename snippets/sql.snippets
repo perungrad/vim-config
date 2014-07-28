@@ -1,0 +1,36 @@
+snippet tbl
+	create table if not exists ${1}(
+			${2}
+	) engine=innodb default charset=utf8 collate=utf8_unicode_ci;
+snippet id
+	id int unsigned not null auto_increment primary key,
+snippet int
+	int not null default ${1:0},${2}
+snippet uint
+	int unsigned not null default ${1:0},${2}
+snippet intu
+	int unsigned not null default ${1:0},${2}
+snippet tint
+	tinyint unsigned not null default ${1:0},${2}
+snippet txt
+	text not null collate utf8_unicode_ci,
+snippet chr
+	varchar(255) not null default '' collate utf8_unicode_ci,
+snippet idx
+	index (${1})${2}
+snippet uq
+	unique (${1})${2}
+snippet trg
+	drop trigger if exists trg_${1:nazov};
+
+	delimiter |
+
+	create trigger trg_$1
+		${2:after insert}
+		on ${3:tabulka} for each row
+		begin
+				${4}
+		end;
+	|
+
+	delimiter ;

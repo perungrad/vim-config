@@ -1,0 +1,51 @@
+snippet tform
+	{{ form(${1:form}) }}
+snippet fst
+	{{ form_start(${1:form}, {'attr': {'role': 'form'}}) }}
+snippet fend
+	{{ form_end(${1:form}) }}
+snippet	flab
+	{{ form_label(${1:form}.${2}) }}
+snippet	flabel
+	{{ form_label(${1:form}.${2}) }}
+snippet frow
+	{{ form_row(${1:form.name}, {'label': 'form-field.${2}'|trans|desc('${3}')}) }}
+snippet ferr
+	{{ form_errors(${1:form}.${2}) }}
+snippet fwid
+	{{ form_widget(${1:form}.${2}) }}
+snippet widget
+	{{ form_widget(${1:form.}${2}) }}
+snippet ftheme
+	{% form_theme ${1:form} ${2:_self} %}
+snippet space
+	{% spaceless %}
+		${1}
+	{% endspaceless %}
+snippet tif
+	{% if ${1} %}
+		${2}
+	{% endif %}
+snippet telse
+	{% else${1:} %}
+		${2}
+snippet path
+	{{ path('${1}') }}
+snippet asset
+	{{ asset(${1}) }}
+snippet trans
+	{{ "${1}"|trans|desc("${2:$1}") }}
+snippet tfor
+	{% for ${2} in ${1} %}
+		{{ ${3:2} }}
+	{% endfor %}
+snippet foreach
+	{% for ${2} in ${1} %}
+		{{ ${3:2} }}
+	{% endfor %}
+snippet render
+	{% render(controller('${1}', {${2}})) %}
+snippet %trans
+	{% trans %}
+		${1}
+	{% endtrans %}

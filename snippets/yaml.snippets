@@ -1,0 +1,95 @@
+snippet route
+	${1:route_name}:
+		path: /${2}
+		defaults: { _controller: ${3} }
+snippet entity
+	${1:namespace}\Entity\${2:className}:
+		type: entity
+		repositoryClass: ${3:$1}\Repository\${4:$2}Repository
+		table: ${5:tableName}
+		id:
+			id:
+				type: integer
+				generator: { strategy: AUTO }
+
+		fields:
+			${6}
+snippet id
+	id:
+		${1:id}:
+			type: int
+			generator: { strategy: AUTO }
+snippet int
+	${1:fieldName}
+		type: integer
+		${2}
+snippet smallint
+	${1:fieldName}
+		type: smallint
+snippet deflt
+	options:
+		default: ${1}
+snippet nll
+	nullable: true
+snippet txt
+	${1:fieldName}:
+		type: text
+snippet str
+	${1:fieldName}:
+		type: string
+		length: ${2:255}
+snippet date
+	${1:fieldName}:
+	  	type: date
+		${2:nullable: true}
+snippet datetime
+	${1:fieldName}:
+		type: datetime
+		${2:nullable: true}
+snippet mto
+	# manyToOne:
+	${1:propertyName}:
+		targetEntity: ${2:entityClass}
+		inversedBy: ${3}
+		joinColumn:
+			name: ${4:columnName}
+			referencedColumnName: ${5:id}
+snippet otm
+	# oneToMany:
+	${1:propertyName}:
+		targetEntity: ${2:entityClass}
+		mappedBy: ${3:propertyInEntity}
+snippet mtmown
+	# manyToMany:
+	${1:name}:
+		targetEntity: ${2:className}
+		inversedBy: ${3:inverseSideFieldName}
+		joinTable:
+			name: ${4:joinTable}
+			joinColumns:
+				${5:fk_id}:
+					referencedColumnName: id
+			inverseJoinColumns:
+				${6:fk_other_table_id}:
+					referencedColumnName: id
+snippet mtminv
+	# manyToMany:
+	${1:name}:
+		targetEntity: ${2:className}
+		mappedBy: ${3:ownerSideFieldName}
+snippet otoown
+	# oneToOne:
+	${1:name}:
+		targetEntity: ${2:targetClassName}
+		inversedBy: ${3:targetFieldName}
+		joinColumn:
+			name: ${4:my_column_name}
+			referencedColumnName: ${5:target_column_name}
+snippet otoinv
+	# oneToOne:
+	${1:name}:
+		targetEntity: ${2:targetClassName}
+		mappedBy: ${3:targetFieldName}
+snippet life
+	lifecycleCallbacks:
+		${1:prePersist}: [ ${2} ]
