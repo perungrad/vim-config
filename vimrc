@@ -1,39 +1,46 @@
-" vundle
 set nocompatible
 filetype off
 set shell=/bin/bash
 
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+" vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'joonty/vim-phpqa.git'
-Bundle 'https://github.com/shawncplus/phpcomplete.vim.git'
-Bundle 'https://github.com/ervandew/supertab.git'
-Bundle 'https://github.com/joonty/vim-taggatron.git'
-Bundle 'https://github.com/joonty/vdebug.git'
-Bundle 'https://github.com/scrooloose/nerdtree.git'
-Bundle 'https://github.com/tpope/vim-fugitive.git'
-Bundle 'https://github.com/kien/ctrlp.vim.git'
-Bundle 'joonty/vim-sauce.git'
-Bundle 'majutsushi/tagbar.git'
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
-Bundle "honza/vim-snippets"
-Bundle "mattn/emmet-vim"
-Bundle "Lokaltog/powerline"
-"Bundle "vim-scripts/phpfolding.vim"
-Bundle "evidens/vim-twig"
-Bundle "editorconfig/editorconfig-vim"
-Bundle "arnaud-lb/vim-php-namespace"
-Bundle "docteurklein/vim-symfony"
-Bundle "rosenfeld/conque-term"
-Bundle "tobyS/vmustache"
-"Bundle "spf13/PIV"
-Bundle "godlygeek/tabular"
-Bundle "gregsexton/MatchTag"
-Bundle 'joonty/vim-phpunitqf.git'
+Plugin 'gmarik/Vundle.vim'
+"Plugin 'joonty/vim-phpqa.git'
+Plugin 'https://github.com/shawncplus/phpcomplete.vim.git'
+Plugin 'https://github.com/ervandew/supertab.git'
+Plugin 'https://github.com/joonty/vim-taggatron.git'
+Plugin 'https://github.com/joonty/vdebug.git'
+Plugin 'https://github.com/scrooloose/nerdtree.git'
+Plugin 'https://github.com/tpope/vim-fugitive.git'
+Plugin 'https://github.com/kien/ctrlp.vim.git'
+Plugin 'joonty/vim-sauce.git'
+Plugin 'majutsushi/tagbar.git'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+Plugin 'mattn/emmet-vim'
+Plugin 'Lokaltog/powerline'
+"Plugin 'vim-scripts/phpfolding.vim'
+Plugin 'evidens/vim-twig'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'arnaud-lb/vim-php-namespace'
+Plugin 'docteurklein/vim-symfony'
+Plugin 'rosenfeld/conque-term'
+Plugin 'tobyS/vmustache'
+"Plugin 'spf13/PIV'
+Plugin 'godlygeek/tabular'
+Plugin 'gregsexton/MatchTag'
+Plugin 'joonty/vim-phpunitqf.git'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'scrooloose/syntastic'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'tpope/vim-abolish'
+
+call vundle#end()
 
 "filetype plugin indent on
 filetype plugin on
@@ -86,6 +93,9 @@ set rtp+=/home/perun/.vim/bundle/powerline/powerline/bindings/vim/
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['php'] = 'php'
+
+" syntastic
+let g:syntastic_php_phpcs_args='--standard=Symfony2'
 
 " ################################################################
 " custom functions
@@ -157,6 +167,9 @@ com! SfJumpToView call s:SfJumpToView()
 " create a mapping only in a Controller file
 autocmd BufEnter *Controller.php nmap <buffer><leader>v :SfJumpToView<CR>
 
+" easy motion
+nmap s <Plug>(easymotion-s)
+
 " custom settings
 set number
 set ruler
@@ -181,7 +194,8 @@ autocmd BufWinEnter * match TrailingWhitespaces / \|\s\+$/
 if has("gui_running")
     set t_Co=256
     set background=dark
-    colorscheme vividchalk
+    colorscheme solarized
+    "colorscheme vividchalk
     "set guifont=Envy\ Code\ R\ for\ Powerline\ 11
     set guifont=Terminess\ Powerline\ 11
     set lines=70 columns=220
@@ -190,6 +204,10 @@ else
     set background=dark
     colorscheme gruvbox
 endif
+
+highlight clear SignColumn
+highlight SyntasticErrorLine guibg=#870001 ctermbg=red
+highlight SyntasticWarningLine guibg=#8700df ctermbg=blue
 
 autocmd BufWritePre *.php :call StripTrailingWhitespace()
 autocmd BufWritePre *.tpl :call StripTrailingWhitespace()

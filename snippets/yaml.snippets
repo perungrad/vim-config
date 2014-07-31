@@ -20,12 +20,19 @@ snippet id
 			type: int
 			generator: { strategy: AUTO }
 snippet int
-	${1:fieldName}
+	${1:fieldName}:
 		type: integer
-		${2}
+		column: ${2:$1}
+snippet dcm
+	${1:fieldName}:
+		type: decimal
+		precision: ${2:10}
+		scale: ${3:2}
+		column: ${4:$1}
 snippet smallint
-	${1:fieldName}
+	${1:fieldName}:
 		type: smallint
+		column: ${2:$1}
 snippet deflt
 	options:
 		default: ${1}
@@ -34,18 +41,22 @@ snippet nll
 snippet txt
 	${1:fieldName}:
 		type: text
+		column: ${2:$1}
 snippet str
 	${1:fieldName}:
 		type: string
 		length: ${2:255}
+		column: ${3:$1}
 snippet date
 	${1:fieldName}:
 	  	type: date
-		${2:nullable: true}
+		column: ${2:$1}
+		${3:nullable: true}
 snippet datetime
 	${1:fieldName}:
 		type: datetime
-		${2:nullable: true}
+		column: ${2:$1}
+		${3:nullable: true}
 snippet mto
 	# manyToOne:
 	${1:propertyName}:
@@ -93,3 +104,7 @@ snippet otoinv
 snippet life
 	lifecycleCallbacks:
 		${1:prePersist}: [ ${2} ]
+snippet unique
+	uniqueConstraints:
+		${1:key_name}:
+			columns: [ ${2} ]
