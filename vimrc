@@ -39,6 +39,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'scrooloose/syntastic'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-abolish'
+Plugin 'groenewege/vim-less'
 
 call vundle#end()
 
