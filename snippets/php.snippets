@@ -1,12 +1,12 @@
 snippet puf
 	/**
-	 * @param ${3}
+	 * @param ${3:} $$2
 	 *
 	 * @return ${4}
 	 */
-	public function ${1}(${2})
+	public function ${1}(${5:$3} $${2:})
 	{
-		${5}
+		${6}
 	}
 snippet prof
 	/**
@@ -192,3 +192,35 @@ snippet flash
 	);
 snippet sess
 	$session = $this->get('session');
+snippet php
+	<?php
+
+	namespace ${1:`substitute(substitute(expand("%:h"), '\v^\w+\/(\u)', '\1', ''), '\/', '\\\', 'g')`};
+
+	/**
+	 * ${4}
+	 *
+	 * @author Milan Herda <herda@profesia.sk>
+	 */
+	${2:class} ${3:`vim_snippets#Filename()`}
+	{
+		${5}
+	}
+
+snippet phpi
+	<?php
+
+	namespace ${1:`substitute(substitute(expand("%:h"), '\v^\w+\/(\u)', '\1', ''), '\/', '\\\', 'g')`};
+
+	/**
+	 * ${4}
+	 *
+	 * @author Milan Herda <herda@profesia.sk>
+	 */
+	${2:interface} ${3:`vim_snippets#Filename()`}
+	{
+		${5}
+	}
+
+snippet nsp
+	namespace ${1:`substitute(substitute(expand("%:h"), '\v^\w+\/(\u)', '\1', ''), '\/', '\\\', 'g')`};
