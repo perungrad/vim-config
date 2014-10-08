@@ -255,6 +255,8 @@ imap {<CR> {<CR>}<esc>O
 imap (<CR> (<CR>)<esc>O
 imap [<CR> [<CR>]<esc>O
 
+nmap ,g :Gstatus<CR>
+
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 nnoremap <C-Tab> :tabnext<CR>
