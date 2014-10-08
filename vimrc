@@ -187,6 +187,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab "standardne namiesto tabov vkladame medzeru
 "set noswapfile
+set tabpagemax=60
 
 highlight TrailingWhitespaces ctermbg=red guibg=#382424
 autocmd ColorScheme * highlight TrailingWhitespaces ctermbg=red guibg=#382424
