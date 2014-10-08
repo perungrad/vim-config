@@ -202,6 +202,10 @@ if has("gui_running")
     set guifont=Terminess\ Powerline\ 11
     set lines=70 columns=220
     set guioptions-=T
+    set guioptions-=r
+    set guioptions-=R
+    set guioptions-=l
+    set guioptions-=L
 else
     set background=dark
     colorscheme gruvbox
