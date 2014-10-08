@@ -49,3 +49,5 @@ snippet %trans
 	{% trans %}
 		${1}
 	{% endtrans %}
+snippet notlast
+	{% if not loop.last %}${1:, }{% endif %}
