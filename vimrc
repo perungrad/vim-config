@@ -97,6 +97,7 @@ let g:snipMate.scope_aliases['php'] = 'php'
 
 " syntastic
 let g:syntastic_php_phpcs_args='--standard=Symfony2'
+let g:syntastic_javascript_checkers = ['jshint']
 
 " ################################################################
 " custom functions
@@ -195,12 +196,16 @@ autocmd BufWinEnter * match TrailingWhitespaces / \|\s\+$/
 if has("gui_running")
     set t_Co=256
     set background=dark
-    colorscheme solarized
-    "colorscheme vividchalk
+    "colorscheme solarized
+    colorscheme vividchalk
     "set guifont=Envy\ Code\ R\ for\ Powerline\ 11
     set guifont=Terminess\ Powerline\ 11
     set lines=70 columns=220
     set guioptions-=T
+    set guioptions-=l
+    set guioptions-=L
+    set guioptions-=r
+    set guioptions-=R
 else
     set background=dark
     colorscheme gruvbox
