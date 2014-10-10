@@ -62,7 +62,9 @@ snippet igetset
 	public function get$1();
 snippet inj
 	/**
-	 * ${4}
+	 * @param $1 $$2
+	 *
+	 * @return self
 	 */
 	public function inject${1:}($1 $${2:})
 	{
@@ -224,3 +226,26 @@ snippet phpi
 
 snippet nsp
 	namespace ${1:`substitute(substitute(expand("%:h"), '\v^\w+\/(\u)', '\1', ''), '\/', '\\\', 'g')`};
+snippet cget
+	$this->container->get('${1}');
+snippet conget
+	$this->container->get('${1}');
+snippet flush
+	$this->${1:entityManager}->flush();${2}
+snippet pers
+	$this->${1:entityManager}->persist($${2});
+snippet queryb
+	$queryBuilder = $this->createQueryBuilder('${1}');
+	$queryBuilder->andWhere('$1.${2}');
+
+	$query = $queryBuilder->getQuery();
+
+	return $query->getResult();
+snippet qb
+	$queryBuilder->${1}
+snippet qpar
+	->setParameter('${1}', ${2}, \PDO::PARAM_${3:INT});
+snippet qpars
+	->setParameters([
+		'${1}' => ${2},
+	])

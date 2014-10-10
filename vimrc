@@ -188,6 +188,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab "standardne namiesto tabov vkladame medzeru
 "set noswapfile
+set tabpagemax=60
 
 highlight TrailingWhitespaces ctermbg=red guibg=#382424
 autocmd ColorScheme * highlight TrailingWhitespaces ctermbg=red guibg=#382424
@@ -202,10 +203,10 @@ if has("gui_running")
     set guifont=Terminess\ Powerline\ 11
     set lines=70 columns=220
     set guioptions-=T
-    set guioptions-=l
-    set guioptions-=L
     set guioptions-=r
     set guioptions-=R
+    set guioptions-=l
+    set guioptions-=L
 else
     set background=dark
     colorscheme gruvbox
@@ -254,6 +255,8 @@ nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 imap {<CR> {<CR>}<esc>O
 imap (<CR> (<CR>)<esc>O
 imap [<CR> [<CR>]<esc>O
+
+nmap ,g :Gstatus<CR>
 
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
