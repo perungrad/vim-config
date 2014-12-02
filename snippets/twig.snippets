@@ -1,9 +1,11 @@
 snippet tform
 	{{ form(${1:form}) }}
 snippet fst
-	{{ form_start(${1:form}, {'attr': {'role': 'form'}}) }}
+	{{ form_start(${1:form}, {attr: {role: 'form', class: 'form-horizontal'}}) }}
 snippet fend
 	{{ form_end(${1:form}) }}
+snippet frest
+	{{ form_rest(${1:form}) }}
 snippet	flab
 	{{ form_label(${1:form}.${2}) }}
 snippet	flabel
@@ -51,3 +53,8 @@ snippet %trans
 	{% endtrans %}
 snippet notlast
 	{% if not loop.last %}${1:, }{% endif %}
+snippet macro
+	{% macro ${1}(${2}) %}
+	{% endmacro %}
+snippet import
+	{% import ${1:_self} as macros %}
