@@ -40,6 +40,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-abolish'
 Plugin 'groenewege/vim-less'
+Plugin 'tpope/vim-git'
 
 call vundle#end()
 
