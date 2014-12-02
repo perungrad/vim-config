@@ -98,6 +98,7 @@ let g:snipMate.scope_aliases['php'] = 'php'
 
 " syntastic
 let g:syntastic_php_phpcs_args='--standard=Symfony2'
+let g:syntastic_javascript_jslint_args='--predef=define --prefef=require --predef=requirejs --predef=window --predef=module'
 
 " ################################################################
 " custom functions
