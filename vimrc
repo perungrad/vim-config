@@ -41,6 +41,7 @@ Plugin 'tpope/vim-abolish'
 Plugin 'groenewege/vim-less'
 Plugin 'tpope/vim-git'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'x1596357/vim'
 
 call vundle#end()
 
@@ -288,3 +289,9 @@ if exists(":Tabularize")
     nmap ,a: :Tabularize /:\zs<CR>
     vmap ,a: :Tabularize /:\zs<CR>
 endif
+
+" double backward slashes
+imap ,,\ <Esc>:call setline('.', substitute(getline('.'), '\\', '\\\\', 'g'))<cr>i
+nmap ,,\ :call setline('.', substitute(getline('.'), '\\', '\\\\', 'g'))<cr>
+
+
