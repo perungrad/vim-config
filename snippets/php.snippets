@@ -8,6 +8,14 @@ snippet puf
 	{
 		${6}
 	}
+snippet const
+	/**
+	 * @param ${2:} $$1
+	 */
+	public function __construct(${3:$2 }$${1:})
+	{
+		$this->${4:$1} = $$1;
+	}
 snippet prof
 	/**
 	 * @param ${3}
@@ -47,6 +55,14 @@ snippet getset
 	public function get$1()
 	{
 		return $this->$3;
+	}
+snippet get
+	/**
+	 * @return ${2:}
+	 */
+	public function get${1:}()
+	{
+		return $this->${3:};
 	}
 snippet igetset
 	/**
@@ -144,7 +160,7 @@ snippet crform
 snippet @var
 	/** @var ${1} */
 snippet @auth
-	@author Milan Herda <herda@profesia.sk>
+	@author ${4:`g:snips_author`}
 snippet usea
 	use Symfony\Component\Validator\Constraints as Assert;
 snippet @as
@@ -185,6 +201,12 @@ snippet log
 	\Tracy\Debugger::fireLog(${1});
 snippet dump
 	\Tracy\Debugger::barDump(${1});
+snippet ndebug
+	\Nette\Diagnostics\Debugger::fireLog(${1});
+snippet nlog
+	\Nette\Diagnostics\Debugger::fireLog(${1});
+snippet ndump
+	\Nette\Diagnostics\Debugger::barDump(${1});
 snippet trans
 	$this->container->get('translator')->trans('${1}');
 snippet flash
@@ -202,7 +224,7 @@ snippet php
 	/**
 	 * ${4}
 	 *
-	 * @author Milan Herda <herda@profesia.sk>
+	 * @author Milan Herda <perun@perunhq.org>
 	 */
 	${2:class} ${3:`vim_snippets#Filename()`}
 	{
@@ -217,7 +239,7 @@ snippet phpi
 	/**
 	 * ${4}
 	 *
-	 * @author Milan Herda <herda@profesia.sk>
+	 * @author Milan Herda <perun@perunhq.org>
 	 */
 	${2:interface} ${3:`vim_snippets#Filename()`}
 	{

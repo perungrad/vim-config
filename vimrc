@@ -40,11 +40,18 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-abolish'
 Plugin 'groenewege/vim-less'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'amdt/vim-niji'
 
 call vundle#end()
 
 "filetype plugin indent on
 filetype plugin on
+
+" vdebug
+let g:vdebug_options= {
+\    "port" : 9999
+\}
 
 " PHPQA
 let g:phpqa_php_cmd='/usr/bin/php'
@@ -62,7 +69,7 @@ let g:tagcommands = {
 \        "tagfile":".php.tags",
 \        "args":"-R --PHP-kinds=+cf --regex-php='/^[ \t]*trait[ \t]+([a-z0_9_]+)/\1/t,traits/i'"
 \    },
-\    "javascript" : {"tagfile":".js.tags","args":"-R"}
+\    "javascript" : {"tagfile":".js.tags","args":"-R --exclude=node_modules"}
 \}
 
 " nerdtree
@@ -80,7 +87,7 @@ let g:ctrlp_regexp = 0
 nmap <F2> :TagbarToggle<CR>
 
 " snippets
-let g:snips_author = 'Milan Herda'
+let g:snips_author = 'Milan Herda <perun@perunhq.org>'
 let g:acp_behaviorSnipmateLength = 1
 
 " emmet
@@ -96,6 +103,7 @@ let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['php'] = 'php'
 
 " syntastic
+let g:syntastic_php_checkers = ['php', 'phpcs']
 let g:syntastic_php_phpcs_args='--standard=Symfony2'
 let g:syntastic_javascript_checkers = ['jshint']
 
@@ -198,7 +206,7 @@ if has("gui_running")
     set t_Co=256
     set background=dark
     "colorscheme solarized
-    colorscheme vividchalk
+    colorscheme molokai
     "set guifont=Envy\ Code\ R\ for\ Powerline\ 11
     set guifont=Terminess\ Powerline\ 11
     set lines=70 columns=220
