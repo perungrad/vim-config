@@ -18,23 +18,43 @@ snippet const
 	}
 snippet prof
 	/**
-	 * @param ${3}
+	 * @param ${3:} $$2
 	 *
 	 * @return ${4}
 	 */
-	protected function ${1}(${2})
+	protected function ${1}(${5:$3} $${2:})
 	{
-		${5}
+		${6}
 	}
 snippet prif
 	/**
-	 * @param ${3}
+	 * @param ${3:} $$2
 	 *
 	 * @return ${4}
 	 */
-	private function ${1}(${2})
+	private function ${1}(${5:$3} $${2:})
 	{
-		${5}
+		${6}
+	}
+snippet fset
+	/**
+	 * @param ${3:} $$2
+	 *
+	 * @return ${4}
+	 */
+	public function set${1}(${5:$3} $${2:})
+	{
+		${6}
+
+		return $this;
+	}
+snippet fget
+	/**
+	 * @return ${2}
+	 */
+	public function get${1}()
+	{
+		return $this->${3}
 	}
 snippet getset
 	/**
@@ -189,12 +209,6 @@ snippet exp
 	$${1:mock}->expects($this->${2:any}())
 		->method('${3:methodName}')
 		->will($this->returnValue(${4:value}));
-snippet mock
-	$this->getMock('${1:className}');
-snippet mockb
-	$this->getMockBuilder('${1:className}')
-		->disableOriginalConstructor()
-		->getMock();
 snippet debug
 	\Tracy\Debugger::fireLog(${1});
 snippet log
@@ -223,8 +237,6 @@ snippet php
 
 	/**
 	 * ${4}
-	 *
-	 * @author Milan Herda <perun@perunhq.org>
 	 */
 	${2:class} ${3:`vim_snippets#Filename()`}
 	{
@@ -238,8 +250,6 @@ snippet phpi
 
 	/**
 	 * ${4}
-	 *
-	 * @author Milan Herda <perun@perunhq.org>
 	 */
 	${2:interface} ${3:`vim_snippets#Filename()`}
 	{
@@ -257,8 +267,8 @@ snippet flush
 snippet pers
 	$this->${1:entityManager}->persist($${2});
 snippet queryb
-	$queryBuilder = $this->createQueryBuilder('${1}');
-	$queryBuilder->andWhere('$1.${2}');
+	$queryBuilder = $this->createQueryBuilder('${1:}');
+	$queryBuilder->andWhere('$1.${2:}');
 
 	$query = $queryBuilder->getQuery();
 
@@ -266,8 +276,105 @@ snippet queryb
 snippet qb
 	$queryBuilder->${1}
 snippet qpar
-	->setParameter('${1}', ${2}, \PDO::PARAM_${3:INT});
+	->setParameter('${1}', ${2}, \PDO::PARAM_${3:INT})
+snippet param
+	->setParameter('${1}', ${2}, \PDO::PARAM_${3:INT})
+snippet expr
+	$queryBuilder->expr()->${1:in}(${2})
+snippet join
+	->join('${1}', '${2}')
+snippet where
+	->andWhere('${1}')
+snippet wherein
+	->andWhere($queryBuilder->expr()->in('${1}', '${2}'))
+snippet wherexpr
+	->andWhere($queryBuilder->expr()->${1:in}('${2}', '${3}'))
 snippet qpars
 	->setParameters([
 		'${1}' => ${2},
 	])
+snippet redir
+	return $this->redirect(
+		$this->generateUrl(
+			'${1}'
+		)
+	);
+snippet url
+	$this->generateUrl(
+		'${1}'
+	)
+snippet @sec
+	@Security("has_role('ROLE_${1:ADMIN}')")
+snippet formtype
+	<?php
+
+	namespace ${1:`substitute(substitute(expand("%:h"), '\v^\w+\/(\u)', '\1', ''), '\/', '\\\', 'g')`};
+
+	use Symfony\Component\Form\AbstractType;
+	use Symfony\Component\Form\FormBuilderInterface;
+	use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+	use Symfony\Component\Form\FormView;
+	use Symfony\Component\Form\FormInterface;
+
+	/**
+	 * ${3}
+	 */
+	class ${2:`vim_snippets#Filename()`} extends AbstractType
+	{
+		/**
+		 * @param FormBuilderInterface $builder
+		 * @param array                $options
+		 */
+		public function buildForm(FormBuilderInterface $builder, array $options)
+		{
+			$builder
+				->add();
+		}
+
+		/**
+		 * @param OptionsResolverInterface $resolver
+		 */
+		public function setDefaultOptions(OptionsResolverInterface $resolver)
+		{
+			$resolver->setDefaults([
+				'data_class'         => '${4}',
+				'cascade_validation' => true,
+				'validation_groups'  => [${5}],
+			]);
+		}
+
+		/**
+		 * @return string
+		 */
+		public function getName()
+		{
+			return '${6:$2}';
+		}
+
+		/**
+		 * {@inheritdoc}
+		 */
+		public function buildView(FormView $view, FormInterface $form, array $options)
+		{
+			parent::buildView($view, $form, $options);
+		}
+	}
+# unit tests
+snippet mock
+	$this->getMock('${1:className}');
+snippet mockb
+	$this->getMockBuilder('${1:className}')
+		->disableOriginalConstructor()
+		->getMock();
+snippet meth
+	$${1}->method('${2}')
+snippet will
+	->will($this->returnValue(${1}));
+
+snippet phpu
+	extends \PHPUnit_Framework_TestCase
+# silex
+snippet share
+	$app['${1}'] = $app->share(function(Application $app) {
+		return new ${2};
+	});

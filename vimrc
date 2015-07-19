@@ -7,7 +7,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-"Plugin 'joonty/vim-phpqa.git'
 Plugin 'https://github.com/shawncplus/phpcomplete.vim.git'
 Plugin 'https://github.com/ervandew/supertab.git'
 Plugin 'https://github.com/joonty/vim-taggatron.git'
@@ -40,8 +39,10 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-abolish'
 Plugin 'groenewege/vim-less'
-Plugin 'terryma/vim-multiple-cursors'
 Plugin 'amdt/vim-niji'
+Plugin 'tpope/vim-git'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'x1596357/vim'
 
 call vundle#end()
 
@@ -52,13 +53,6 @@ filetype plugin on
 let g:vdebug_options= {
 \    "port" : 9999
 \}
-
-" PHPQA
-let g:phpqa_php_cmd='/usr/bin/php'
-let g:phpqa_codesniffer_args = "--standard=Symfony2"
-let g:phpqa_codesniffer_autorun = 0
-let g:phpqa_messdetector_autorun = 0
-let g:phpqa_codecoverage_autorun = 0
 
 " supertab
 let g:SuperTabDefaultCompletionType = "<c-n>"
@@ -103,9 +97,12 @@ let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['php'] = 'php'
 
 " syntastic
-let g:syntastic_php_checkers = ['php', 'phpcs']
-let g:syntastic_php_phpcs_args='--standard=Symfony2'
+let g:syntastic_php_checkers = ['php', 'phpmd', 'phpcs']
+let g:syntastic_php_phpcs_args = '--standard=Symfony2'
+let g:syntastic_javascript_jslint_args = '--predef=define --prefef=require --predef=requirejs --predef=window --predef=module'
 let g:syntastic_javascript_checkers = ['jshint']
+"let g:syntastic_php_phpmd_exec = '/home/perun/bin/phpmd'
+"let g:syntastic_php_phpmd_post_args = "text /home/perun/www/domelia2/phpmd-rules.xml"
 
 " ################################################################
 " custom functions
@@ -204,9 +201,16 @@ autocmd BufWinEnter * match TrailingWhitespaces / \|\s\+$/
 
 if has("gui_running")
     set t_Co=256
-    set background=dark
+    "set background=dark
     "colorscheme solarized
+    "colorscheme vividchalk
+
+    set background=dark
     colorscheme molokai
+
+    "set background=light
+    "colorscheme solarized
+
     "set guifont=Envy\ Code\ R\ for\ Powerline\ 11
     set guifont=Terminess\ Powerline\ 11
     set lines=70 columns=220
@@ -291,3 +295,9 @@ if exists(":Tabularize")
     nmap ,a: :Tabularize /:\zs<CR>
     vmap ,a: :Tabularize /:\zs<CR>
 endif
+
+" double backward slashes
+imap ,,\ <Esc>:call setline('.', substitute(getline('.'), '\\', '\\\\', 'g'))<cr>i
+nmap ,,\ :call setline('.', substitute(getline('.'), '\\', '\\\\', 'g'))<cr>
+
+
