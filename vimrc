@@ -12,8 +12,10 @@ Plugin 'https://github.com/ervandew/supertab.git'
 Plugin 'https://github.com/joonty/vim-taggatron.git'
 Plugin 'https://github.com/joonty/vdebug.git'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
+Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'https://github.com/tpope/vim-fugitive.git'
 Plugin 'https://github.com/kien/ctrlp.vim.git'
+Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'joonty/vim-sauce.git'
 Plugin 'majutsushi/tagbar.git'
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -39,7 +41,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-abolish'
 Plugin 'groenewege/vim-less'
-Plugin 'amdt/vim-niji'
+Plugin 'losingkeys/vim-niji'
 Plugin 'tpope/vim-git'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'x1596357/vim'
@@ -75,6 +77,11 @@ let NERDTreeDirArrows=1
 let g:ctrlp_map    = '<c-p>'
 let g:ctrlp_cmd    = 'CtrlP'
 let g:ctrlp_regexp = 0
+
+" ctrlP funky
+nnoremap ,fu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap ,fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 " tagbar
 
