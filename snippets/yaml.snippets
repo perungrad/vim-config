@@ -3,17 +3,17 @@ snippet route
 		path: /${2}
 		defaults: { _controller: ${3} }
 snippet entity
-	${1:namespace}\Entity\${2:className}:
+	${1:namespace}\Entity\\${2:className}:
 		type: entity
-		repositoryClass: ${3:$1}\Repository\${4:$2}Repository
-		table: ${5:tableName}
+		repositoryClass: $1\Repository\\$2Repository
+		table: ${3:tableName}
 		id:
 			id:
 				type: integer
 				generator: { strategy: AUTO }
 
 		fields:
-			${6}
+			${4}
 snippet id
 	id:
 		${1:id}:

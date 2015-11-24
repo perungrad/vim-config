@@ -228,7 +228,7 @@ if has("gui_running")
     set guioptions-=L
 else
     set background=dark
-    colorscheme gruvbox
+    colorscheme molokai
 endif
 
 highlight clear SignColumn

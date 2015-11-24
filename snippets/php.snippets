@@ -215,6 +215,8 @@ snippet log
 	\Tracy\Debugger::fireLog(${1});
 snippet dump
 	\Tracy\Debugger::barDump(${1});
+snippet vdump
+	\Tracy\Debugger::dump(${1});
 snippet ndebug
 	\Nette\Diagnostics\Debugger::fireLog(${1});
 snippet nlog
@@ -252,6 +254,19 @@ snippet phpi
 	 * ${4}
 	 */
 	${2:interface} ${3:`vim_snippets#Filename()`}
+	{
+		${5}
+	}
+
+snippet phpu
+	<?php
+
+	namespace ${1:`substitute(substitute(expand("%:h"), '\v^\w+\/(\u)', '\1', ''), '\/', '\\\', 'g')`};
+
+	/**
+	 * ${4}
+	 */
+	${2:class} ${3:`vim_snippets#Filename()`} extends \PHPUnit_Framework_TestCase
 	{
 		${5}
 	}
@@ -371,8 +386,6 @@ snippet meth
 snippet will
 	->will($this->returnValue(${1}));
 
-snippet phpu
-	extends \PHPUnit_Framework_TestCase
 # silex
 snippet share
 	$app['${1}'] = $app->share(function(Application $app) {
