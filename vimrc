@@ -45,6 +45,10 @@ Plugin 'losingkeys/vim-niji'
 Plugin 'tpope/vim-git'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'x1596357/vim'
+" color themes
+Plugin 'mkarmona/materialbox'
+Plugin 'loogica/vim_themes'
+Plugin 'scheakur/vim-scheakur'
 
 call vundle#end()
 
@@ -208,15 +212,9 @@ autocmd BufWinEnter * match TrailingWhitespaces / \|\s\+$/
 
 if has("gui_running")
     set t_Co=256
-    "set background=dark
-    "colorscheme solarized
-    "colorscheme vividchalk
 
-    set background=dark
-    colorscheme molokai
-
-    "set background=light
-    "colorscheme solarized
+    set background=light
+    colorscheme scheakur
 
     "set guifont=Envy\ Code\ R\ for\ Powerline\ 11
     set guifont=Terminess\ Powerline\ 11
