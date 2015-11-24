@@ -373,6 +373,19 @@ snippet will
 
 snippet phpu
 	extends \PHPUnit_Framework_TestCase
+# mockery
+snippet mocksetup
+	public function setup()
+	{
+		Mockery::close();
+	}
+
+snippet dbsetup
+	public function setup()
+	{
+		$this->prepareDb();
+	}
+
 # silex
 snippet share
 	$app['${1}'] = $app->share(function(Application $app) {
