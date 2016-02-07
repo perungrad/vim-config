@@ -213,8 +213,8 @@ autocmd BufWinEnter * match TrailingWhitespaces / \|\s\+$/
 if has("gui_running")
     set t_Co=256
 
-    set background=light
-    colorscheme scheakur
+    set background=dark
+    colorscheme molokai
 
     "set guifont=Envy\ Code\ R\ for\ Powerline\ 11
     set guifont=Terminess\ Powerline\ 11
