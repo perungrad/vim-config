@@ -279,6 +279,32 @@ snippet phpu
 		${5}
 	}
 
+snippet phpt
+	<?php
+
+	use ${1:`vim_snippets#Filename()`};
+
+	$container = require __DIR__ . '/../../bootstrap.php';
+
+	/**
+	 * ${4}
+	 */
+	${2:class} ${3:`vim_snippets#Filename()`}Test extends Tester\TestCase
+	{
+		/**
+		 * Close mockery
+		 */
+		protected function tearDown()
+		{
+			Mockery::close();
+		}
+
+		${5}
+	}
+
+	$testcase = new $3Test();
+	$testcase->run();
+
 snippet nsp
 	namespace ${1:`substitute(substitute(expand("%:h"), '\v^\w+\/(\u)', '\1', ''), '\/', '\\\', 'g')`};
 snippet cget
@@ -406,6 +432,8 @@ snippet dbsetup
 		$this->prepareDb();
 	}
 
+snippet mmock
+	Mockery::mock('${1}');
 # silex
 snippet share
 	$app['${1}'] = $app->share(function(Application $app) {
