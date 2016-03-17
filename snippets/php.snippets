@@ -217,6 +217,14 @@ snippet dump
 	\Tracy\Debugger::barDump(${1});
 snippet vdump
 	\Tracy\Debugger::dump(${1});
+snippet pdebug
+	\ProfesiaTracy::fireLog(${1});
+snippet plog
+	\ProfesiaTracy::fireLog(${1});
+snippet pdump
+	\ProfesiaTracy::barDump(${1});
+snippet pvdump
+	\ProfesiaTracy::dump(${1});
 snippet ndebug
 	\Nette\Diagnostics\Debugger::fireLog(${1});
 snippet nlog
@@ -385,7 +393,6 @@ snippet meth
 	$${1}->method('${2}')
 snippet will
 	->will($this->returnValue(${1}));
-
 # mockery
 snippet mocksetup
 	public function setup()

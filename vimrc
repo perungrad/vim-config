@@ -7,48 +7,117 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
+
+" phpcomplete
 Plugin 'https://github.com/shawncplus/phpcomplete.vim.git'
+
+" supertab
 Plugin 'https://github.com/ervandew/supertab.git'
+
+" taggatron (automatic updates of ctag files)
 Plugin 'https://github.com/joonty/vim-taggatron.git'
-Plugin 'https://github.com/joonty/vdebug.git'
-Plugin 'https://github.com/scrooloose/nerdtree.git'
-Bundle 'jistr/vim-nerdtree-tabs'
-Plugin 'https://github.com/tpope/vim-fugitive.git'
-Plugin 'https://github.com/kien/ctrlp.vim.git'
-Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'joonty/vim-sauce.git'
+
+" tagbar - 'tags' from current file in sidebar. requires ctags
 Plugin 'majutsushi/tagbar.git'
+
+" vdebug (debugger for php, ruby, python, nodejs...)
+Plugin 'https://github.com/joonty/vdebug.git'
+
+" nerdtree
+Plugin 'https://github.com/scrooloose/nerdtree.git'
+Plugin 'jistr/vim-nerdtree-tabs'
+
+" git
+Plugin 'https://github.com/tpope/vim-fugitive.git'
+Plugin 'airblade/vim-gitgutter'
+
+" ctrlP - file search
+Plugin 'https://github.com/ctrlpvim/ctrlp.vim.git'
+Plugin 'tacahiroy/ctrlp-funky'
+
+" Sauce - project specific configuration
+Plugin 'joonty/vim-sauce.git'
+
+" Snipmate
+" snipmate zavislosti
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
+" snipmate plugin
 Plugin 'garbas/vim-snipmate'
+" snippety pre snipmate
 Plugin 'honza/vim-snippets'
+
+" emmet
 Plugin 'mattn/emmet-vim'
+
+" powerline
 Plugin 'Lokaltog/powerline'
-"Plugin 'vim-scripts/phpfolding.vim'
-Plugin 'evidens/vim-twig'
+
+" support for EditorConfig
 Plugin 'editorconfig/editorconfig-vim'
+
+" PHP
+" add 'use' statements
 Plugin 'arnaud-lb/vim-php-namespace'
-Plugin 'docteurklein/vim-symfony'
-Plugin 'rosenfeld/conque-term'
-Plugin 'tobyS/vmustache'
-"Plugin 'spf13/PIV'
-Plugin 'godlygeek/tabular'
-Plugin 'gregsexton/MatchTag'
+
+" run phpunit from vim
 Plugin 'joonty/vim-phpunitqf.git'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'scrooloose/syntastic'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'tpope/vim-abolish'
+
+" padawan - autocomplete
+Plugin 'mkusher/padawan.vim'
+
+" plugins for phpcomplete-extended
+"Bundle 'Shougo/vimproc'
+"Bundle 'Shougo/unite.vim'
+"Bundle 'm2mdas/phpcomplete-extended'
+"Bundle 'm2mdas/phpcomplete-extended-symfony'
+
+" symfony
+"Plugin 'docteurklein/vim-symfony'
+
+" conque term
+"Plugin 'rosenfeld/conque-term'
+
+" collection of php plugins
+"Plugin 'spf13/PIV'
+
+" SYNTAX HIGHLIGHTERS
+Plugin 'evidens/vim-twig'
 Plugin 'groenewege/vim-less'
-Plugin 'losingkeys/vim-niji'
 Plugin 'tpope/vim-git'
+Plugin 'vim-scripts/php-annotations-syntax'
+
+" template system, maybe for PIV?
+" Plugin 'tobyS/vmustache'
+
+" tabular (align assignments and statements)
+Plugin 'godlygeek/tabular'
+
+" match tags
+Plugin 'gregsexton/MatchTag'
+
+" syntax control and linting
+Plugin 'scrooloose/syntastic'
+
+" easymotion (with s)
+Plugin 'easymotion/vim-easymotion'
+
+" search and replace multiple variants of a word
+Plugin 'tpope/vim-abolish'
+
+" rainbow parenthesis
+"Plugin 'losingkeys/vim-niji'
+
+" multiple cursors
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'x1596357/vim'
+
 " color themes
-Plugin 'mkarmona/materialbox'
-Plugin 'loogica/vim_themes'
-Plugin 'scheakur/vim-scheakur'
+"Plugin 'mkarmona/materialbox'
+"Plugin 'loogica/vim_themes'
+"Plugin 'scheakur/vim-scheakur'
+"Plugin 'atelierbram/vim-colors_atelier-schemes'
+"Plugin 'flazz/vim-colorschemes'
+
 
 call vundle#end()
 
@@ -61,7 +130,12 @@ let g:vdebug_options= {
 \}
 
 " supertab
+"let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" phpcomplete-extended
+"let g:phpcomplete_index_composer_command = "/home/perun/bin/composer"
+"autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
 
 " taggatron
 let g:tagcommands = {
@@ -88,7 +162,6 @@ nnoremap ,fu :CtrlPFunky<Cr>
 nnoremap ,fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 " tagbar
-
 nmap <F2> :TagbarToggle<CR>
 
 " snippets
@@ -204,7 +277,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab "standardne namiesto tabov vkladame medzeru
 "set noswapfile
-set tabpagemax=60
+set tabpagemax=100
 
 highlight TrailingWhitespaces ctermbg=red guibg=#382424
 autocmd ColorScheme * highlight TrailingWhitespaces ctermbg=red guibg=#382424
@@ -213,11 +286,11 @@ autocmd BufWinEnter * match TrailingWhitespaces / \|\s\+$/
 if has("gui_running")
     set t_Co=256
 
-    set background=light
-    colorscheme scheakur
+    set background=dark
+    colorscheme solarized
 
-    "set guifont=Envy\ Code\ R\ for\ Powerline\ 11
-    set guifont=Terminess\ Powerline\ 11
+    set guifont=Envy\ Code\ R\ for\ Powerline\ 11
+    "set guifont=Terminess\ Powerline\ 11
     set lines=70 columns=220
     set guioptions-=T
     set guioptions-=r
@@ -288,12 +361,15 @@ noremap <Leader>u :call PhpInsertUse()<CR>
 inoremap <Leader>e <C-O>:call PhpExpandClass()<CR>
 noremap <Leader>e :call PhpExpandClass()<CR>
 
-" symfony console
-let g:symfony_enable_shell_mapping = 0 "disable the mapping of symfony console
+" vim-symfony plugin
+"let g:symfony_app_console_caller= "php"
+"let g:symfony_app_console_path= "app/console"
+"let g:symfony_enable_shell_mapping = 0 "disable the mapping of symfony console
 
-map <F12> :execute ":ConqueTermSplit php app/console -s --process-isolation"<CR>
+" conqueterm
+"map <F12> :execute ":ConqueTermSplit php app/console -s --process-isolation"<CR>
 
-" tabularize
+" tabular
 if exists(":Tabularize")
     nmap ,a= :Tabularize /=<CR>
     vmap ,a= :Tabularize /=<CR>
