@@ -118,6 +118,7 @@ Plugin 'terryma/vim-multiple-cursors'
 "Plugin 'atelierbram/vim-colors_atelier-schemes'
 "Plugin 'flazz/vim-colorschemes'
 
+Plugin 'honza/dockerfile.vim'
 
 call vundle#end()
 
@@ -126,7 +127,7 @@ filetype plugin on
 
 " vdebug
 let g:vdebug_options= {
-\    "port" : 9999
+\    'port' : 19999
 \}
 
 " supertab
@@ -182,7 +183,9 @@ let g:snipMate.scope_aliases['php'] = 'php'
 
 " syntastic
 let g:syntastic_php_checkers = ['php', 'phpmd', 'phpcs']
-let g:syntastic_php_phpcs_args = '--standard=Symfony2'
+let g:syntastic_php_phpcs_args = '--standard=PSR2'
+let g:syntastic_php_phpmd_post_args_before = 'text'
+let g:syntastic_php_phpmd_post_args = 'unusedcode'
 let g:syntastic_javascript_jslint_args = '--predef=define --prefef=require --predef=requirejs --predef=window --predef=module'
 let g:syntastic_javascript_checkers = ['jshint']
 "let g:syntastic_php_phpmd_exec = '/home/perun/bin/phpmd'
@@ -198,6 +201,46 @@ endfunction
 
 function AlignAssignments ()
     let ASSIGN_OP   = '[-+*/%|&\.]\?=\@<!=[=~]\@!'
+    let ASSIGN_LINE = '^\(.\{-}\)\s*\(' . ASSIGN_OP . '\)'
+
+    "Locate block of code to be considered (same indentation, no blanks)
+    let indent_pat = '^' . matchstr(getline('.'), '^\s*') . '\S'
+    let firstline  = search('^\%('. indent_pat . '\)\@!','bnW') + 1
+    let lastline   = search('^\%('. indent_pat . '\)\@!', 'nW') - 1
+    if lastline < 0
+        let lastline = line('$')
+    endif
+
+    "Find the column at which the operators should be aligned...
+    let max_align_col = 0
+    let max_op_width  = 0
+    for linetext in getline(firstline, lastline)
+        "Does this line have an assignment in it?
+        let left_width = match(linetext, '\s*' . ASSIGN_OP)
+
+        "If so, track the maximal assignment column and operator width...
+        if left_width >= 0
+            let max_align_col = max([max_align_col, left_width])
+
+            let op_width      = strlen(matchstr(linetext, ASSIGN_OP))
+            let max_op_width  = max([max_op_width, op_width+1])
+        endif
+    endfor
+
+    "Code needed to reformat lines so as to align operators...
+    let FORMATTER = '\=printf("%-*s%*s", max_align_col, submatch(1),
+    \                                    max_op_width,  submatch(2))'
+
+    " Reformat lines with operators aligned in the appropriate column...
+    for linenum in range(firstline, lastline)
+        let oldline = getline(linenum)
+        let newline = substitute(oldline, ASSIGN_LINE, FORMATTER, "")
+        call setline(linenum, newline)
+    endfor
+endfunction
+
+function AlignDocBlock ()
+    let ASSIGN_OP   = '[-+*/%|&\.]\?\$\@<!\$[\$~]\@!'
     let ASSIGN_LINE = '^\(.\{-}\)\s*\(' . ASSIGN_OP . '\)'
 
     "Locate block of code to be considered (same indentation, no blanks)
@@ -287,10 +330,11 @@ if has("gui_running")
     set t_Co=256
 
     set background=dark
-    colorscheme solarized
+    "set background=light
+    colorscheme molokai
 
-    set guifont=Envy\ Code\ R\ for\ Powerline\ 11
-    "set guifont=Terminess\ Powerline\ 11
+    "set guifont=Envy\ Code\ R\ for\ Powerline\ 11
+    set guifont=Terminess\ Powerline\ 11
     set lines=70 columns=220
     set guioptions-=T
     set guioptions-=r
@@ -329,6 +373,7 @@ let php_folding=1
 
 " custom shortcuts
 nmap <silent>  ;=  :call AlignAssignments()<CR>
+nmap <silent>  ;]  :call AlignDocBlock()<CR>
 " 'quote' a word
 nnoremap qw :silent! normal mpea'<Esc>bi'<Esc>`pl
 " double "quote" a word
