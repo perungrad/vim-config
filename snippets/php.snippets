@@ -400,6 +400,50 @@ snippet formtype
 			parent::buildView($view, $form, $options);
 		}
 	}
+snippet formhandler
+	<?php
+
+	namespace ${1:`substitute(substitute(expand("%:h"), '\v^\w+\/(\u)', '\1', ''), '\/', '\\\', 'g')`};
+
+	use Symfony\Component\Form\FormInterface;
+	use Symfony\Component\HttpFoundation\Request;
+	use Doctrine\ORM\EntityManagerInterface;
+
+	class ${2:`vim_snippets#Filename()`}
+	{
+		/** @var EntityManagerInterface */
+		private $entityManager;
+
+		/**
+		 * @param EntityManagerInterface $entityManager
+		 */
+		public function __construct(EntityManagerInterface $entityManager)
+		{
+			$this->entityManager = $entityManager;
+		}
+
+		/**
+		 * @param FormInterface $form
+		 * @param Request       $request
+		 *
+		 * @return bool
+		 */
+		public function handle(FormInterface $form, Request $request)
+		{
+			$form->handleRequest($request);
+
+			if ((!$form->isSubmitted()) || (!$form->isValid())) {
+				return false;
+			}
+
+			$${3:entity} = $form->getData();
+
+			$this->entityManager->persist($$3);
+			$this->entityManager->flush();
+
+			return true;
+		}
+	}
 # unit tests
 snippet mock
 	$this->getMock('${1:className}');

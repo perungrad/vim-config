@@ -49,6 +49,7 @@ Plugin 'x1596357/vim'
 Plugin 'mkarmona/materialbox'
 Plugin 'loogica/vim_themes'
 Plugin 'scheakur/vim-scheakur'
+Plugin 'mxw/vim-jsx'
 
 call vundle#end()
 
@@ -114,6 +115,9 @@ let g:syntastic_javascript_jslint_args = '--predef=define --prefef=require --pre
 let g:syntastic_javascript_checkers = ['jshint']
 "let g:syntastic_php_phpmd_exec = '/home/perun/bin/phpmd'
 "let g:syntastic_php_phpmd_post_args = "text /home/perun/www/domelia2/phpmd-rules.xml"
+"
+" jsx
+let g:jsx_ext_required = 0
 
 " ################################################################
 " custom functions
